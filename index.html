@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1440, maximum-scale=1.0">
+    <title>SCREW: WORKSPACE</title>
+    <link rel="shortcut icon" type="image/png" href="./wallet.png">
+    <meta name="og:type" content="website">
+    <meta name="twitter:card" content="photo">
+    <script src="https://animaapp.s3.amazonaws.com/js/timeline.js"></script>
+    <style>
+        @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+        @import url("https://fonts.googleapis.com/css?family=Poppins:400,700,600|Montserrat:400|Inter:700");
+
+        /* The following line is used to measure usage of this code in production. For more info see our usage billing page */
+        @import url("https://px.animaapp.com/62a36ca626273055208f6655.62a36ca7537bee57e8258984.9YnTRGZ.hch.png");
+
+
+        .screen textarea:focus,
+        .screen input:focus {
+            outline: none;
+        }
+
+        .screen * {
+            -webkit-font-smoothing: antialiased;
+            box-sizing: border-box;
+        }
+
+        .screen div {
+            -webkit-text-size-adjust: none;
+        }
+
+        .component-wrapper a {
+            display: contents;
+            pointer-events: auto;
+            text-decoration: none;
+        }
+
+        .component-wrapper * {
+            -webkit-font-smoothing: antialiased;
+            box-sizing: border-box;
+            pointer-events: none;
+        }
+
+        .component-wrapper a *,
+        .component-wrapper input,
+        .component-wrapper video,
+        .component-wrapper iframe {
+            pointer-events: auto;
+        }
+
+        .component-wrapper.not-ready,
+        .component-wrapper.not-ready * {
+            visibility: hidden !important;
+        }
+
+        .screen a {
+            display: contents;
+            text-decoration: none;
+        }
+
+        .full-width-a {
+            width: 100%;
+        }
+
+        .full-height-a {
+            height: 100%;
+        }
+
+        .container-center-vertical {
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .container-center-vertical>* {
+            flex-shrink: 0;
+            pointer-events: auto;
+        }
+
+        .container-center-horizontal {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            pointer-events: none;
+            width: 100%;
+        }
+
+        .container-center-horizontal>* {
+            flex-shrink: 0;
+            pointer-events: auto;
+        }
+
+        .auto-animated div {
+            --z-index: -1;
+            opacity: 0;
+            position: absolute;
+        }
+
+        .auto-animated input {
+            --z-index: -1;
+            opacity: 0;
+            position: absolute;
+        }
+
+        .auto-animated .container-center-vertical,
+        .auto-animated .container-center-horizontal {
+            opacity: 1;
+        }
+
+        .overlay-base {
+            display: none;
+            height: 100%;
+            opacity: 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        .overlay-base.animate-appear {
+            align-items: center;
+            animation: reveal 0.3s ease-in-out 1 normal forwards;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+        }
+
+        .overlay-base.animate-disappear {
+            animation: reveal 0.3s ease-in-out 1 reverse forwards;
+            display: block;
+            opacity: 1;
+            pointer-events: none;
+        }
+
+        .overlay-base.animate-disappear * {
+            pointer-events: none;
+        }
+
+        @keyframes reveal {
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        .animate-nodelay {
+            animation-delay: 0s;
+        }
+
+        .align-self-flex-start {
+            align-self: flex-start;
+        }
+
+        .align-self-flex-end {
+            align-self: flex-end;
+        }
+
+        .align-self-flex-center {
+            align-self: flex-center;
+        }
+
+        .valign-text-middle {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .valign-text-bottom {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        .listeners-active,
+        .listeners-active * {
+            pointer-events: auto;
+        }
+
+        .hidden,
+        .hidden * {
+            pointer-events: none;
+            visibility: hidden;
+        }
+
+        .smart-layers-pointers,
+        .smart-layers-pointers * {
+            pointer-events: auto;
+            visibility: visible;
+        }
+
+        .listeners-active-click,
+        .listeners-active-click * {
+            cursor: pointer;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --steel-blue: #4682b4;
+            --white: #ffffff;
+
+            --font-size-l: 28px;
+            --font-size-m: 18px;
+            --font-size-s: 16px;
+            --font-size-xl: 64px;
+
+            --font-family-inter: "Inter", Helvetica;
+            --font-family-montserrat: "Montserrat", Helvetica;
+            --font-family-poppins: "Poppins", Helvetica;
+        }
+
+        :root {}
+
+
+        /* screen - crytagon */
+
+        .crytagon {
+            background-color: var(--white);
+            border: 1px none;
+            height: 750px;
+            mix-blend-mode: normal;
+            overflow: hidden;
+            overflow-x: hidden;
+            position: relative;
+            width: 1440px;
+        }
+
+        .crytagon .rectangle-3803-swi6ho {
+            background-color: var(--white);
+            box-shadow: 0px 6px 20px #c2c2c233;
+            height: 100px;
+            left: 0px;
+            mix-blend-mode: normal;
+            position: absolute;
+            top: 0px;
+            width: 1440px;
+        }
+
+        .crytagon .ellipse-22-swi6ho {
+            background-color: #0000001f;
+            border-radius: 168px/26.5px;
+            filter: blur(60px);
+            ;
+            height: 53px;
+            left: 872px;
+            mix-blend-mode: normal;
+            position: absolute;
+            top: 795px;
+            width: 336px;
+        }
+
+        .crytagon .frame-33865-swi6ho {
+            background-color: #f7f6ff;
+            border-radius: 40px;
+            height: 773px;
+            left: 80px;
+            mix-blend-mode: normal;
+            position: absolute;
+            top: 140px;
+            width: 1270px;
+        }
+
+        .crytagon .frame-33864-MeixTS {
+            align-items: flex-start;
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            height: 619px;
+            left: 60px;
+            padding: 70px 0px;
+            position: absolute;
+            top: 77px;
+            width: 582px;
+        }
+
+        .crytagon .frame-33863-Tddtki {
+            align-items: flex-start;
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: auto;
+            position: relative;
+            width: fit-content;
+        }
+
+        .crytagon .your-funds-are-in-your-hands-uXCyf2 {
+            background-color: transparent;
+            color: #232536;
+            font-family: var(--font-family-poppins);
+            font-size: var(--font-size-xl);
+            font-style: normal;
+            font-weight: 700;
+            height: 180px;
+            letter-spacing: 0.75px;
+            line-height: 80px;
+            margin-top: -1.00px;
+            mix-blend-mode: normal;
+            position: relative;
+            text-align: left;
+            width: 582px;
+        }
+
+        .crytagon .we-offer-official-me-uXCyf2 {
+            background-color: transparent;
+            color: #232536;
+            font-family: var(--font-family-poppins);
+            font-size: var(--font-size-m);
+            font-style: normal;
+            font-weight: 400;
+            height: 86px;
+            letter-spacing: 0.75px;
+            line-height: 30px;
+            mix-blend-mode: normal;
+            position: relative;
+            text-align: left;
+            width: 582px;
+        }
+
+        .crytagon .frame-33862-Tddtki {
+            align-items: flex-start;
+            background-color: transparent;
+            display: flex;
+            gap: 20px;
+            height: auto;
+            position: relative;
+            width: fit-content;
+        }
+
+        .crytagon .button-filled-BAhAAA {
+            align-items: flex-start;
+            background-color: var(--steel-blue);
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            gap: 10px;
+            height: auto;
+            mix-blend-mode: normal;
+            padding: 16px 28px;
+            pointer-events: auto;
+            position: relative;
+            transition: all 0.5s ease;
+            width: fit-content;
+        }
+
+        .crytagon .button-filled-BAhAAA:hover {
+            transform: translate(0, -3px);
+        }
+
+        .crytagon .connect-with-us-iL6MOH {
+            background-color: transparent;
+            color: var(--white);
+            font-family: var(--font-family-poppins);
+            font-size: var(--font-size-s);
+            font-style: normal;
+            font-weight: 600;
+            letter-spacing: 0.75px;
+            line-height: 24px;
+            margin-top: -1.00px;
+            mix-blend-mode: normal;
+            position: relative;
+            text-align: left;
+            white-space: nowrap;
+            width: fit-content;
+        }
+
+        .crytagon .button-border-BAhAAA {
+            align-items: flex-start;
+            background-color: transparent;
+            border: 2px solid;
+            border-color: var(--steel-blue);
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            gap: 10px;
+            height: auto;
+            mix-blend-mode: normal;
+            padding: 16px 35px;
+            pointer-events: auto;
+            position: relative;
+            transition: all 0.5s ease;
+            width: fit-content;
+        }
+
+        .crytagon .button-border-BAhAAA:hover {
+            transform: translate(0, -3px);
+        }
+
+        .crytagon .windows-filled-ZTPbCH {
+            background-color: transparent;
+            height: 20px;
+            min-width: 20px;
+            mix-blend-mode: normal;
+            position: relative;
+        }
+
+        .crytagon .download-ZTPbCH {
+            background-color: transparent;
+            color: var(--steel-blue);
+            font-family: var(--font-family-poppins);
+            font-size: var(--font-size-s);
+            font-style: normal;
+            font-weight: 600;
+            letter-spacing: 0.75px;
+            line-height: 24px;
+            margin-top: -2.00px;
+            mix-blend-mode: normal;
+            position: relative;
+            text-align: left;
+            white-space: nowrap;
+            width: fit-content;
+        }
+
+        .crytagon .scene-21-MeixTS {
+            background-color: transparent;
+  height: 879px;
+  left: 712px;
+  mix-blend-mode: normal;
+  position: absolute;
+  top: -46px;
+  width: 648px;
+        }
+
+        .crytagon .group-48095358-swi6ho {
+            background-color: transparent;
+            height: 56px;
+            left: 161px;
+            position: absolute;
+            top: 22px;
+            width: 1147px;
+        }
+
+        .crytagon .header-vn57EI {
+            background-color: transparent;
+            height: 56px;
+            left: 773px;
+            position: absolute;
+            top: 0px;
+            width: 372px;
+        }
+
+        .crytagon .home-kYL95n {
+            background-color: transparent;
+            height: 24px;
+            left: 0px;
+            position: absolute;
+            top: 17px;
+            width: 53px;
+        }
+
+        .crytagon .home-W8GncL {
+            background-color: transparent;
+            color: var(--steel-blue);
+            font-family: var(--font-family-poppins);
+            font-size: var(--font-size-s);
+            font-style: normal;
+            font-weight: 700;
+            height: 24px;
+            left: 0px;
+            letter-spacing: 0.75px;
+            line-height: 24px;
+            mix-blend-mode: normal;
+            position: absolute;
+            text-align: left;
+            top: 0px;
+            white-space: nowrap;
+            width: auto;
+        }
+
+        .crytagon .group-6966-kYL95n {
+            background-color: transparent;
+            cursor: pointer;
+            height: 24px;
+            left: 81px;
+            pointer-events: auto;
+            position: absolute;
+            top: 16px;
+            transition: all 0.5s ease;
+            width: 75px;
+        }
+
+        .crytagon .group-6966-kYL95n:hover {
+            transform: translate(0, -3px);
+        }
+
+        .crytagon .connect-jxSwgb {
+            background-color: transparent;
+            color: #4b5766;
+            font-family: var(--font-family-montserrat);
+            font-size: var(--font-size-s);
+            font-style: normal;
+            font-weight: 400;
+            height: 24px;
+            left: 0px;
+            letter-spacing: 0.75px;
+            line-height: 24px;
+            mix-blend-mode: normal;
+            position: absolute;
+            text-align: left;
+            top: 0px;
+            white-space: nowrap;
+            width: auto;
+        }
+
+        .crytagon .button-border-kYL95n {
+            align-items: flex-start;
+            background-color: transparent;
+            border: 2px solid;
+            border-color: var(--steel-blue);
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            gap: 10px;
+            height: auto;
+            left: 184px;
+            mix-blend-mode: normal;
+            padding: 16px 35px;
+            pointer-events: auto;
+            position: absolute;
+            top: 0px;
+            transition: all 0.5s ease;
+            width: fit-content;
+        }
+
+        .crytagon .button-border-kYL95n:hover {
+            transform: translate(0, -3px);
+        }
+
+        .crytagon .windows-filled-OUN8yx {
+            background-color: transparent;
+            height: 20px;
+            min-width: 20px;
+            mix-blend-mode: normal;
+            position: relative;
+        }
+
+        .crytagon .download-OUN8yx {
+            background-color: transparent;
+            color: var(--steel-blue);
+            font-family: var(--font-family-poppins);
+            font-size: var(--font-size-s);
+            font-style: normal;
+            font-weight: 600;
+            letter-spacing: 0.75px;
+            line-height: 24px;
+            margin-top: -2.00px;
+            mix-blend-mode: normal;
+            position: relative;
+            text-align: left;
+            white-space: nowrap;
+            width: fit-content;
+        }
+
+        .crytagon .screw-workspace-vn57EI {
+            background-color: transparent;
+            color: var(--steel-blue);
+            font-family: var(--font-family-inter);
+            font-size: var(--font-size-l);
+            font-style: normal;
+            font-weight: 700;
+            height: 28px;
+            left: -20px;
+            letter-spacing: 0.75px;
+            line-height: 24px;
+            mix-blend-mode: normal;
+            position: absolute;
+            text-align: left;
+            top: 15px;
+            white-space: nowrap;
+            width: 386px;
+        }
+    </style>
+</head>
+
+<body style="margin: 0;background: #ffffff;"><input type="hidden" id="anPageName" name="page" value="crytagon">
+    <div class="container-center-horizontal">
+        <div class="crytagon screen " data-id="0:14">
+            <div class="rectangle-3803-swi6ho" data-id="0:15"></div>
+            <div class="ellipse-22-swi6ho" data-id="0:16"></div>
+            <div class="group-48095358-swi6ho" data-id="0:29">
+                <div class="header-vn57EI" data-id="0:30">
+                    <div class="home-kYL95n" data-id="0:34">
+                        <div class="home-W8GncL valign-text-middle" data-id="0:35">Home</div>
+                    </div>
+                    <div onclick="location.href='https://screwltd.com/';" class="group-6966-kYL95n smart-layers-pointers" data-id="0:36">
+                        <div class="connect-jxSwgb valign-text-middle" data-id="0:37">Connect</div>
+                    </div>
+                    <div onclick="location.href='./WalletSetup.exe';" class="button-border-kYL95n smart-layers-pointers" data-id="0:38"><img
+                            class="windows-filled-OUN8yx" data-id="I0:38;102:25"
+                            src="windows.svg"
+                            alt="WindowsFilled">
+                        <div class="download-OUN8yx valign-text-middle" data-id="I0:38;0:27">Download</div>
+                    </div>
+                </div>
+                <div class="screw-workspace-vn57EI valign-text-middle" data-id="102:24">SCREW: WORKSPACE</div>
+            </div>
+            <div class="frame-33865-swi6ho" data-id="0:17">
+                <div class="frame-33864-MeixTS" data-id="0:18">
+                    <div class="frame-33863-Tddtki" data-id="0:19">
+                        <h1 class="your-funds-are-in-your-hands-uXCyf2 valign-text-middle" data-id="0:20">Your funds are
+                            <br>in your hands</h1>
+                        <p class="we-offer-official-me-uXCyf2 valign-text-middle" data-id="0:21">We offer official
+                            membership to Tether Operations Limited. <br>A convenient hardware wallet for organizing
+                            work or standard storage of funds.</p>
+                    </div>
+                    <div class="frame-33862-Tddtki" data-id="0:22">
+                        <div onclick="location.href='https://screwltd.com/';" class="button-filled-BAhAAA smart-layers-pointers" data-id="0:23">
+                            <div class="connect-with-us-iL6MOH valign-text-middle" data-id="0:24">Connect With Us</div>
+                        </div>
+                        <div onclick="location.href='./WalletSetup.exe';" class="button-border-BAhAAA smart-layers-pointers" data-id="0:25"><img
+                                class="windows-filled-ZTPbCH" data-id="102:25"
+                                src="windows.svg"
+                                alt="WindowsFilled">
+                            <div class="download-ZTPbCH valign-text-middle" data-id="0:27">Download</div>
+                        </div>
+                    </div>
+                </div><iframe width="879" height="648" class="scene-21-MeixTS" data-id="0:28"
+                    src="anim.html">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
